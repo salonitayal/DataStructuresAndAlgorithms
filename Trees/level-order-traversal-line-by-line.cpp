@@ -15,10 +15,10 @@ void levelOrder(Node* root)
           continue;
       }
       
-        if(root->left)
-            q.push(root->left != NULL);
+        if(root->left)            // can use: if(root->left != NULL)
+            q.push(root->left);
         if(root->right)
-            q.push(root->right != NULL);
+            q.push(root->right);
   }
     cout<<"$"<<" ";
 }
