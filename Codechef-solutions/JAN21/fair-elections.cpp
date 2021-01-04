@@ -21,8 +21,8 @@ int main() {
 	    }
 	    int i=0;
 	    sort(a, a+n);
-	    if(sm1 == sm2)cout << -1 << endl;
-	    else if(sm1 > sm2)cout << r << endl;
+	    
+	    if(sm1 > sm2)cout << r << endl;
 	    else
 	    {
 	        while(i < n)
