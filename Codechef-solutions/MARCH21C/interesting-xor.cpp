@@ -1,22 +1,22 @@
 #include <bits/stdc++.h>
+#define ll long long int
 using namespace std;
 
 int main() {
-	int t; cin >> t;
+	ll t; cin >> t;
 	while(t--)
 	{
-	    long long int n; cin >> n;
-        long long int p = ceil(log2(n));
-        p = pow(2, p);
-
-        long long int maxm = 0;
-        for(long long int i=0; i<p; i++)
-        {
-            long long int x = i ^ n;
-            long long int res = x * i;
-            if(res > maxm)maxm = res;
-        }
-        cout << maxm << endl;
+	    ll n; cin >> n;
+	    ll x = n;
+	    ll i=0;
+	    while(x > 0)
+	    {
+	        ++i;
+	        x /= 2;
+	    }
+        ll a = pow(2, i-1)-1;
+        ll b = a ^ n;
+        cout << a*b << endl;
 	}
 	return 0;
 }
