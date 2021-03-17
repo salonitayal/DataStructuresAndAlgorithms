@@ -92,6 +92,8 @@ int main()
         cout <<  head-> data << " ";
         head = head-> next;
     }
+    cout << endl;
+    cout << first;
 
 
     return 0;
