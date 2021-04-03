@@ -46,4 +46,4 @@ public:
         if(f)return true;
         else return false;
     }
-};
+};  
