@@ -2,12 +2,12 @@
 using namespace std;
 int recur(int a, int b, int c, int n)
 {
-    if(n==3)return tmp;
-    int tmp = a + b + c;
+    if(n==3)return a+b+c;
+    int tmp = recur(a, b, c, n-1);
     a = b;
     b = c;
     c = tmp;
-    recur(a, b, c, n-1);
+    return a+b+c;
 }
 
 int main() {
