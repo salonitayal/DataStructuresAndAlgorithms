@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
-int recur(int a, int b, int c, int n)
+int recur(int &a, int &b, int &c, int n)
 {
-    if(n==3)return a+b+c;
+    if(n==4)return a+b+c;
     int tmp = recur(a, b, c, n-1);
     a = b;
     b = c;
