@@ -8,8 +8,8 @@ using namespace std;
             ans.push_back(sm);
             return;
         }
-        rec(v, n, i+1, ans, sm+v[i]);
         rec(v, n, i+1, ans, sm);
+        rec(v, n, i+1, ans, sm+v[i]);
     }
 
     vector<int> subsetSums(vector<int> v, int N)
@@ -22,8 +22,8 @@ using namespace std;
 
     int main()
     {
-        vector<int> v(3);
-        for(int i=0; i<3; i++)cin >> v[i];
-        vector<int> a = subsetSums(v, 3);
+        vector<int> v(7);
+        for(int i=0; i<7; i++)cin >> v[i];
+        vector<int> a = subsetSums(v, 7);
         for(auto i:a)cout << i << " ";
     }
