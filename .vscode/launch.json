@@ -6,6 +6,7 @@
     "configurations": [
     
     
+    
         {
             "name": "g++ - Build and debug active file",
             "type": "cppdbg",
