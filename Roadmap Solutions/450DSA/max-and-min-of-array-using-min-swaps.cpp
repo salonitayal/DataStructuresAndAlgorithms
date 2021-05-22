@@ -27,6 +27,7 @@ struct Pair getmaxmin(int a[], int lo, int hi)
     struct Pair mml = getmaxmin(a, lo, mid);
     struct Pair mmr = getmaxmin(a, mid+1, hi);
 
+    // Compare minimums of two parts
     if (mml.min < mmr.min)
         maxmin.min = mml.min;
     else
