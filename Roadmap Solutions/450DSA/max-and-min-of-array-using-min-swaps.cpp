@@ -49,8 +49,7 @@ int main()
                   1, 330, 3000 };
     int arr_size = 6;
      
-    struct Pair minmax = getmaxmin(arr, 0,
-                             arr_size - 1);
+    struct Pair minmax = getmaxmin(arr, 0, arr_size - 1);
                               
     cout << "Minimum element is "
          << minmax.min << endl;
