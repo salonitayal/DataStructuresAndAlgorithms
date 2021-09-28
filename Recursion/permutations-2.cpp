@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int cnt=0;
+int c=0;
 void solve(int n, int itm, int cnt, vector<int> x)
 {
     if(cnt == itm+1)
@@ -28,7 +28,6 @@ int main()
     vector<int> x(n);
     for(int i=0; i<n; i++)x[i] = 0;
     solve(n, itm, 1, x);
-    
     return 0;
 }
 

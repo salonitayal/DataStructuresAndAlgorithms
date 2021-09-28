@@ -1,30 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
-int cnt=0;
-void solve(int n, int itm, int i, string x)
+int c=0;
+void solve(int n, int itm, int cnt, vector<int> x)
 {
-    if(cnt == itm)
+    if(cnt == itm+1)
     {
-        cout << x << endl;
+        ++c;
+        for(int i=0; i<n; i++)cout << x[i];
+        cout << endl;
         return;
     }
-    if(i == n)return;
-    ++cnt;
-    x[i]=cnt+'0';
-    solve(n, itm, i+1, x);
-    --cnt;
-    x[i]='_';
-    solve(n, itm, i+1, x);
+    for(int i=0; i<n; i++)
+    {
+        if(x[i] == 0)
+        {
+            x[i] = cnt ;
+            solve(n, itm, cnt+1, x);
+            x[i] = 0;
+        }
+    }
+    
 
 }
 
 int main()
 {
     int n, itm; cin >> n >> itm;
-    string x="";
-    for(int i=0; i<n; i++)x += "_";
-    solve(n, itm, 0, x);
-    
+    vector<int> x(n);
+    for(int i=0; i<n; i++)x[i] = 0;
+    solve(n, itm, 1, x);
+    // cout << c;
     return 0;
 }
 
