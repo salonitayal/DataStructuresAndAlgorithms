@@ -9,8 +9,8 @@ void queenPermutations(int n, vector<vector<int>> b)
         {
             for(int j=0; j<n; j++)
             {
-                if(b[i][j]==0)cout << 0;
-                else cout << b[i][j];
+                if(b[i][j]==0)cout << '-' << "\t";
+                else cout << 'q' << b[i][j] << "\t";
             }cout << endl;
         }
         cout << endl;
