@@ -1,104 +1,146 @@
-#include<bits/stdc++.h>
-#define ll long long int
+/******************************************
+		* AUTHOR : SALONI TAYAL *
+******************************************/
+
+#include <bits/stdc++.h>
+#define ll unsigned long long int
 #define vchk(v) for(auto i:v)cout << i << " ";
+#define p(a) cout << a << endl;
+#define MOD 1000000007
 using namespace std;
 
-void solved0(string s)
-{
-    string res="";
-    int idx=0;
-    for(int i=0; i<s.length(); i++)
-    {
-        if(s[i] == '0')
-        {
-            idx = i;
-            break;
-        }
-    }
-    for(int i=idx; i<s.length(); i++)
-    {
-        if(s[i] == '0')res+='1';
-        else res+='0';
-    }
-    int ans = stoi(res);
-    cout << ans << endl;
-}
 void solve()
 {
     int n, d; cin >> n >> d;
-    string s;
-    s = to_string(n);
-    vector<int> v;
-    int cnt=0;
-    for(int i=0; s[i]; i++)
+    string s = to_string(n);
+    int idx=-1, cnt=0, l=s.length();
+    for(int i=0; i<l; i++)
     {
-        if(s[i] == d+'0')v.push_back(i);
-        if(s[i] == '0')++cnt;
+        if(s[i] == d+'0' && cnt==0)
+        {
+            idx = i;
+        }
+        if(s[i] == d+'0')
+        {
+            ++cnt;
+        }
     }
-        
-    if(v.size()==0)
+    if(idx==-1)  // that is digit doesn't exist
     {
         cout << 0;
         return;
     }
-    if(cnt == s.length()-1-v[0] && d != 0)         // handles 4000000000 4
-    {
-        string x = "1";
-        for(int i=0; i<cnt; i++)x+="0";
-        int ans = stoi(x);
-        cout << ans;
-        return;
-    }
     if(d==0)
     {
-        solved0(s);
+        string x = "";
+        for(int i=0; i<idx; i++)
+            x += s[i];
+        for(int i=idx; i<l; i++)
+            x += '1';
+        int num1 = stoi(x), num2 = stoi(s);
+        int res = num1-num2;
+        cout << res;
         return;
     }
-    int idx = v[0], f=1, carry=0;
-    string res="";
-    for(int i=s.length()-1; i>idx; i--)
+    if(d==9)
     {
-        if(f)
+        if(idx == 0) // 9019 9
         {
-            if(s[i]!='0')
+            string x="1";
+            for(int i=0; i<l; i++)x += '0';
+            int num = stoi(x);
+            int res = num - n;
+            cout << res;
+            return;
+        }
+        string x = "";
+        int tmp_idx=-1;
+        for(int i=idx-1; i>=0; i--)
+        {
+            if(s[i] == '8')
             {
-                int tmp = 10 - (s[i]-'0');
-                res = tmp + '0';
-                carry = 1;
+                x += '0';
             }
             else
             {
-                res = "0";
+                tmp_idx = i;
+                break;
             }
-            f=0;
         }
-        else
+        if(tmp_idx >= 0)
         {
-            if(s[i]!='0' || carry)
+            string z = "";
+            z += s[tmp_idx];
+            int tmp = stoi(z);
+            ++tmp;
+            x = to_string(tmp) + x;
+        }
+        else x = '1'+x;
+        for(int i=tmp_idx-1; i>=0; i--)
+        {
+            x = s[i] + x;
+        }
+        for(int i=idx; i<l; i++)
+            x += '0';
+            
+        int num = stoi(x);
+        int res = num - n;
+        cout << res; 
+        return;
+    }
+    if(cnt == 1)
+    {
+        string res="1";
+        int tmp_cnt=0;
+        for(int i=idx+1; i<l; i++)
+        {
+            if(s[i] == '0')++tmp_cnt;
+        }
+        if(tmp_cnt == l-idx-1)
+        {
+            for(int i=0; i<tmp_cnt; i++)res += '0';
+            int x = stoi(res);
+            cout << x;
+            return;
+        }
+    }
+    int carry=0;
+    string res="";
+    for(int i=l-1; i>idx; i--)
+    {
+        if(carry == 0)
+        {
+            int tmp = 10-(s[i]-'0');
+            if(tmp < 10)
             {
-                int tmp = 10 - ((s[i]-'0') + carry);
-                
                 res = to_string(tmp) + res;
                 carry = 1;
             }
             else
-            {
-                res = "0" + res;
-            }
+                res = to_string(0) + res;
+        }
+        else
+        {
+            int tmp = 10-((s[i]-'0')+carry);
+            res = to_string(tmp) + res;
         }
     }
-    int ans = stoi(res);
-    cout << ans;
+    int x = stoi(res);
+    cout << x;
 }
 int main()
+
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    ll t; cin >> t;
-    while(t--)
-    {
-        solve();
-        cout << endl;
-    }
-    return 0;
+	#ifndef ONLINE_JUDGE
+		freopen("input.txt", "r", stdin);
+		freopen("output.txt", "w", stdout);
+	#endif
+
+	int t; cin >> t;
+	while(t--)
+	{
+		solve();
+		cout << endl;
+	}
+	return 0;
 }
